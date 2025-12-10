@@ -3,6 +3,7 @@ from app.database.session import engine
 
 app = FastAPI()
 
+
 @app.get("/ping")
 async def ping():
     async with engine.begin() as conn:
