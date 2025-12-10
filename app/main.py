@@ -1,6 +1,10 @@
-def main():
-    print("Hello from freelance-finance-backend-api!")
+from fastapi import FastAPI
+from app.database.session import engine
 
+app = FastAPI()
 
-if __name__ == "__main__":
-    main()
+@app.get("/ping")
+async def ping():
+    async with engine.begin() as conn:
+        await conn.run_sync(lambda c: None)
+    return {"status": "ok"}
